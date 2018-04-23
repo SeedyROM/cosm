@@ -17,7 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 
+api_urlpatterns = [
+    path('accounts/', include('rest_registration.api.urls')),
+    path('authentication/', include('authentication.urls')),
+]
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/auth/', include('authentication.urls')),
+    # path('admin/', admin.site.urls),
+    path('api/v1/', include(api_urlpatterns)),
 ]
