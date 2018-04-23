@@ -1,5 +1,0 @@
-[
-  "authentication/tests.py::TestAuthentication::test_obtain_token_fails_with_invalid_info",
-  "authentication/tests.py::TestAuthentication::test_obtain_token_with_valid_info",
-  "core/test_testing.py::TestAPITestCase::test_tests"
-]
