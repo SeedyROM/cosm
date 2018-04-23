@@ -18,10 +18,8 @@ class TestAuthentication(APITestCase):
     def test_obtain_token_fails_with_invalid_info(self):
         bad_data = {'username': 'tfasfesdsajkfjslkat', 'password': 'passdashfkjawwo'}
         resp = self.client.post(self.obtain_token_url, bad_data, format='json')
-        print(resp.data)
         self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_obtain_token_with_valid_info(self):
         resp = self.client.post(self.obtain_token_url, self.user_data, format='json')
-        print(resp.data)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
