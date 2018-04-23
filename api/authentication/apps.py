@@ -1,5 +1,4 @@
 from django.apps import AppConfig
 
-
-class AuthenticationConfig(AppConfig):
+class AuthenticationConfig(AppConfig): # pragma: no cover
     name = 'authentication'

@@ -1,4 +1,6 @@
 {
   "authentication/test_views.py::AuthenticationTests::test_create_account": true,
+  "authentication/test_views.py::TestAuthentication::test_obtain_token": true,
+  "authentication/test_views.py::TestAuthentication::test_obtain_token_fails_with_invalid_information": true,
   "authentication/views.tests.py": true
 }
