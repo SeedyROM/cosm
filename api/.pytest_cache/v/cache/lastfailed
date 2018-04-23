@@ -1,0 +1,4 @@
+{
+  "authentication/test_views.py::AuthenticationTests::test_create_account": true,
+  "authentication/views.tests.py": true
+}
