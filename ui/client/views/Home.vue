@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <counter></counter>
+    <login-form redirect="/profile"></login-form>
     <p>
       To get started, edit files in <code>./client</code> and save.
     </p>
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import Counter from 'components/Counter'
+import LoginForm from 'components/LoginForm'
 
 export default {
   components: {
-    Counter
+    LoginForm
   }
 }
 </script>

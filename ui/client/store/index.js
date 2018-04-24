@@ -1,33 +1,46 @@
+import createLogger from 'vuex/dist/logger'
+import createPersistedState from 'vuex-persistedstate'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
 const state = {
-  count: 0
+  token: null,
+  username: null,
+  loggedIn: false
 }
 
 const mutations = {
-  INCREMENT (state) {
-    state.count++
+  LOGIN (state, { token, username }) {
+    state.token = token
+    state.loggedIn = true
+    state.username = username
   },
-  DECREMENT (state) {
-    state.count--
+  LOGOUT (state) {
+    state.token = null
+    state.username = null
+    state.loggedIn = false
   }
 }
 
 const actions = {
-  incrementAsync ({ commit }) {
-    setTimeout(() => {
-      commit('INCREMENT')
-    }, 200)
+  authenticate ({ commit }, data) {
+    commit('LOGIN', data)
+  },
+  logout ({ commit }) {
+    commit('LOGOUT')
   }
 }
 
 const store = new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  plugins: [
+    createLogger(),
+    createPersistedState()
+  ]
 })
 
 export default store
