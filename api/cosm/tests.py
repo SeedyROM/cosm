@@ -29,4 +29,4 @@ class TestReducedRegisterUrls(TestCase):
         self.assertEqual(namespace, 'rest_registration')
 
         for url in url_list:
-            self.assertNotIn(url.name, ['login', 'logout'])
+            self.assertNotIn(url.name, ['login', 'logout', 'profile'])
