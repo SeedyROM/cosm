@@ -1,8 +1,11 @@
 venv
 *.env
 __pycache__
-node_modules
 .vscode
 *.sqlite3
 .coverage
 .pytest_cache
+node_modules
+*.log
+.DS_Store
+/dist
