@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
+    'rest_registration',
     'authentication',
 ]
 
@@ -129,4 +130,13 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}
+
+# DRF Registration
+
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_ENABLED': False,
+    'RESET_PASSWORD_VERIFICATION_URL': 'https://frontend-url/reset-password/',
+    'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
+    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
 }
