@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
+from unittest import TestCase
 
 from core.testing import APITestCase
+from . import urls
 
 
 class TestAccountsIntegration(APITestCase):
@@ -19,5 +21,12 @@ class TestAccountsIntegration(APITestCase):
         
     def test_register(self):
         resp = self.client.post(self.register_url, self.user_data, format='json')
-        print(resp.data)
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
+
+class TestReducedRegisterUrls(TestCase):
+    def test_remove_login_and_logout(self):
+        url_list, namespace = urls.reducedRegistrationRoutes()
+        self.assertEqual(namespace, 'rest_registration')
+
+        for url in url_list:
+            self.assertNotIn(url.name, ['login', 'logout'])

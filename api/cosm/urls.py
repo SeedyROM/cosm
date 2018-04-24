@@ -17,8 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 
 
+def reducedRegistrationRoutes():
+    registration_module = include('rest_registration.api.urls')
+    patterns = registration_module[0].urlpatterns
+    namespace = registration_module[1]
+
+    return ([url for url in patterns if url.name not in ['login', 'logout']], namespace)
+
+
 api_urlpatterns = [
-    path('accounts/', include('rest_registration.api.urls')),
+    path('accounts/', include(reducedRegistrationRoutes())),
     path('authentication/', include('authentication.urls')),
 ]
 
