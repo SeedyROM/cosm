@@ -1,9 +1,6 @@
 <template>
-  <div class="page">
+  <div :key=$route.params.id class="page-container">
     <login-form redirect="/profile"></login-form>
-    <p>
-      To get started, edit files in <code>./client</code> and save.
-    </p>
   </div>
 </template>
 

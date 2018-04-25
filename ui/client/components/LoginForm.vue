@@ -1,19 +1,43 @@
 <template>
-<form @submit=submit>
+<div class="login-form">
     <div class="logged-in" v-if=$store.state.loggedIn>
-        You're already logged in as {{ $store.state.username }}.
-        <button class="logout" v-on:click="$store.dispatch('logout')">Log out</button>
+        <div class="box">
+            You're already logged in as {{ $store.state.username }}.
+        </div>
+        <div class="field">
+            <button class="logout button is-link" v-on:click="$store.dispatch('logout')">Log out</button>
+        </div>
     </div>
-    <div class="error" v-if="error">
-        {{ error }}
-    </div>
-    <div v-if=!$store.state.loggedIn>
-        <input type="text" name="username" placeholder="Username..." v-model=username>
-        <input type="password" name="password" placeholder="Password..." v-model=password>
-        <button>Login</button>
-    </div>
-</form>
+    <form @submit=submit>
+        <div class="error" v-if="error">
+            {{ error }}
+        </div>
+        <div v-if=!$store.state.loggedIn>
+            <div class="field">
+                <label class="label">Username:</label>
+                <input class="input" type="text" name="username" placeholder="Username..." v-model=username>
+            </div>
+            <div class="field">
+                <label class="label">Password:</label>
+                <input class="input" type="password" name="password" placeholder="Password..." v-model=password>
+            </div>
+            <button class="button is-link">Login</button>
+        </div>
+    </form>
+</div>
 </template>
+
+<style lang="scss">
+    .login-form {
+        margin-bottom: 1.5rem;
+        .error {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: rgb(244, 66, 66);
+            color: white;
+        }
+    }
+</style>
 
 <script>
 export default {
