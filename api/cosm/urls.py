@@ -18,11 +18,12 @@ from django.urls import path, include
 
 
 def reducedRegistrationRoutes():
+    ignored_routes = ['login', 'logout', 'profile']
     registration_module = include('rest_registration.api.urls')
     patterns = registration_module[0].urlpatterns
     namespace = registration_module[1]
 
-    return ([url for url in patterns if url.name not in ['login', 'logout']], namespace)
+    return ([url for url in patterns if url.name not in ignored_routes], namespace)
 
 
 api_urlpatterns = [
