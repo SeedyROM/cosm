@@ -10,7 +10,6 @@ services:
     volumes:
       - ./api:/src/api
       - ./api/config/nginx:/etc/nginx/conf.d:ro
-      - ./utils:/utils
     depends_on:
       - api
     networks:
