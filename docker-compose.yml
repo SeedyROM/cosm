@@ -1,0 +1,51 @@
+version: '2'
+networks:
+  backend:
+services:  
+  api_nginx:
+    image: nginx:latest
+    container_name: ng01  
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/api:/src/api
+      - ./api/config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - api
+    networks:
+      - backend
+  
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile    
+    container_name: dg01
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn cosm.wsgi -b 0.0.0.0:8000"
+    depends_on:
+      - db
+    volumes:
+      - ./api:/src/api
+    expose:
+      - "8000"
+    networks:
+      - backend
+
+  ui_nginx:
+    image: nginx:latest
+    container_name: ng02
+    build:
+      context: ui
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./ui:/src/ui
+      - ./ui/config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - api_nginx
+
+  db:
+    image: postgres:latest
+    container_name: ps01
+    networks:
+      - backend
