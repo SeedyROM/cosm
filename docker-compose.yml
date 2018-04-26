@@ -8,13 +8,14 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./src/api:/src/api
-      - ./api/config/nginx:/etc/nginx/conf.d
+      - ./api:/src/api
+      - ./api/config/nginx:/etc/nginx/conf.d:ro
+      - ./utils:/utils
     depends_on:
       - api
     networks:
       - backend
-    command: ["./utils/wait_for_it.sh", "api:8000"]
+    command: [nginx-debug, '-g', 'daemon off;']
   
   api:
     build:
@@ -44,6 +45,7 @@ services:
       - ./ui/config/nginx:/etc/nginx/conf.d
     depends_on:
       - api_nginx
+    command: [nginx-debug, '-g', 'daemon off;']
 
   db:
     image: postgres:latest
