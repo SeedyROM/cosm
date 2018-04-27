@@ -1,0 +1,55 @@
+version: '2'
+networks:
+  backend:
+services:  
+  api_nginx:
+    image: nginx:latest
+    container_name: ng01  
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api/config/nginx:/etc/nginx/conf.d:ro
+    depends_on:
+      - api
+    networks:
+      - backend
+    command: [nginx-debug, '-g', 'daemon off;']
+  
+  api:
+    restart: always
+    build:
+      context: api
+      dockerfile: dev.dockerfile  
+    container_name: dg01
+    depends_on:
+      - db
+    volumes:
+      - ./api:/src/api
+    expose:
+      - "8000"
+    networks:
+      - backend
+    environment:
+      - ENV=${ENV}
+
+  ui_nginx:
+    restart: always
+    container_name: ng02
+    build:
+      context: ui
+      dockerfile: dev.dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./ui:/src/ui
+      - ./ui/config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - api_nginx
+    environment:
+      - ENV=${ENV}
+
+  db:
+    image: postgres:latest
+    container_name: ps01
+    networks:
+      - backend

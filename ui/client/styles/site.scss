@@ -1,0 +1,82 @@
+@import "~animate.css";
+
+$blue: #72d0eb;
+$pink: #ffb3b3;
+$family-serif: "Georgia", serif;
+
+@import "bulma";
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    // background-color: orangered;
+}
+
+#navbar {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    color: darkcyan;
+    background: #E8FAFF;
+}
+
+.brand-logo {
+    font-size: 30pt;
+    font-weight: bolder;
+    font-style: italic;
+    line-height: 1.1;
+}
+@media screen and (max-width: 1087px) {
+    .navbar-menu {
+        box-shadow: none;
+        height: 0;
+        overflow: auto;
+
+        .navbar-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+    }
+    .navbar-menu.is-active {
+        display: block;
+        height: inherit;
+        transition: height 0.3s ease;
+        margin-top: 1.5rem;
+        padding: 0;
+    }
+}
+@media screen and (min-width: 1087px) {
+    .navbar-item {
+        padding: 0 1.5rem;
+    }
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    transition: opacity 0.15s ease;
+}
+
+.fade-leave {
+
+}
+
+.fade-leave-active {
+    transition: opacity 0.15s ease;
+    opacity: 0;
+}
+
+.navbar-menu.is-active {
+    transition: height 0.3s ease;
+}
+
+.page-container {
+    padding: 0 1.5rem;
+}
