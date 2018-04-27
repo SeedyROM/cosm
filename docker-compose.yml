@@ -8,7 +8,6 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./api:/src/api
       - ./api/config/nginx:/etc/nginx/conf.d:ro
     depends_on:
       - api
@@ -17,11 +16,11 @@ services:
     command: [nginx-debug, '-g', 'daemon off;']
   
   api:
+    restart: always
     build:
       context: api
-      dockerfile: Dockerfile    
+      dockerfile: dev.dockerfile  
     container_name: dg01
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn cosm.wsgi -b 0.0.0.0:8000"
     depends_on:
       - db
     volumes:
@@ -30,13 +29,15 @@ services:
       - "8000"
     networks:
       - backend
+    environment:
+      - ENV=${ENV}
 
   ui_nginx:
-    image: nginx:latest
+    restart: always
     container_name: ng02
     build:
       context: ui
-      dockerfile: Dockerfile
+      dockerfile: dev.dockerfile
     ports:
       - "4000:4000"
     volumes:
@@ -44,7 +45,8 @@ services:
       - ./ui/config/nginx:/etc/nginx/conf.d
     depends_on:
       - api_nginx
-    command: [nginx-debug, '-g', 'daemon off;']
+    environment:
+      - ENV=${ENV}
 
   db:
     image: postgres:latest

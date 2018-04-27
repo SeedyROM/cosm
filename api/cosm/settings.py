@@ -29,7 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_registration',
+    'core',
     'authentication',
 ]
 
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'cosm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-if os.environ.get('DOCKER'):
+if os.environ.get('DOCKER') or not DEBUG:
     DATABASES = {  
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',

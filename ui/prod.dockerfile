@@ -21,13 +21,10 @@ ADD . /src
 # Expose the port the app runs in
 EXPOSE 4000
 
-#Build the app
-RUN npm run build
-
 #==================== Setting up stage ==================== 
 # Create image based on the official nginx - Alpine image
+RUN npm run build 
 FROM nginx:1.13.7-alpine
-
 COPY --from=node /src/dist/ /usr/share/nginx/html
-
 ADD ./config/nginx /etc/nginx/conf.d
+CMD [nginx-debug, '-g', 'daemon off;']

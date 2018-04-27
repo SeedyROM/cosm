@@ -61,7 +61,7 @@ body {
 }
 
 .fade-enter-active {
-    transition: opacity 0.2s ease;
+    transition: opacity 0.15s ease;
 }
 
 .fade-leave {
@@ -69,7 +69,7 @@ body {
 }
 
 .fade-leave-active {
-    transition: opacity 0.2s ease;
+    transition: opacity 0.15s ease;
     opacity: 0;
 }
 
