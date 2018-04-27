@@ -79,6 +79,7 @@
     "vue-template-compiler": "^2.2.0",
     "webpack": "2.2.0",
     "webpack-dev-server": "^2.6.1",
-    "xo": "^0.18.0"
+    "xo": "^0.18.0",
+    "hoek": "^5.0.3"
   }
 }
