@@ -12,7 +12,9 @@
       <div class="navbar-menu animated" id="navbar-items">
         <div class="navbar-end">
           <router-link class="navbar-item" to="/">Home</router-link>
-          <router-link class="navbar-item" to="/profile">Profile</router-link>
+          <router-link v-if=$store.state.loggedIn class="navbar-item" to="/profile">Profile</router-link>
+          <router-link v-if=!$store.state.loggedIn class="navbar-item" to="/login">Login</router-link>   
+          <router-link v-if=$store.state.loggedIn class="navbar-item" to="/logout">Logout</router-link>                           
         </div>
       </div>
     </nav>
@@ -33,11 +35,16 @@ document.addEventListener('DOMContentLoaded', function () {
       $el.addEventListener('click', function () {
         // Get the target from the "data-target" attribute
         var target = $el.dataset.target
-        console.log(target)
         var $target = document.getElementById(target)
         // Toggle the class on both the "navbar-burger" and the "navbar-menu"
         $el.classList.toggle('is-active')
         $target.classList.toggle('is-active')
+        $target.querySelectorAll('.navbar-item').forEach(function(link) {
+          link.addEventListener('click', function() {
+            $target.classList.remove('is-active')
+            $el.classList.remove('is-active')
+          })
+        })
       })
     })
   }
