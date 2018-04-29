@@ -1,5 +1,4 @@
 const shell = require('shelljs')
-const after = require('mocha').after
 
 let server = null
 
