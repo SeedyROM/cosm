@@ -14,7 +14,13 @@ services:
     networks:
       - backend
     command: [nginx-debug, '-g', 'daemon off;']
-  
+
+  db:
+    image: postgres:latest
+    container_name: ps01
+    networks:
+      - backend
+
   api:
     restart: always
     build:
@@ -24,7 +30,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./api:/src/api
+      - ./api:/src
     expose:
       - "8000"
     networks:
@@ -41,15 +47,11 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - ./ui:/src/ui
+      - ./ui:/src
+      - /src/node_modules
       - ./ui/config/nginx:/etc/nginx/conf.d
     depends_on:
       - api_nginx
+      - api
     environment:
       - ENV=${ENV}
-
-  db:
-    image: postgres:latest
-    container_name: ps01
-    networks:
-      - backend
