@@ -74,7 +74,7 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^5.2.0",
     "mocha-webpack": "^1.1.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.13.1",
     "offline-plugin": "^4.9.1",
     "postcss-loader": "^0.9.1",
     "postcss-nested": "^1.0.0",
