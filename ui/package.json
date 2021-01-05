@@ -40,7 +40,7 @@
   ],
   "dependencies": {
     "animate.css": "^3.6.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-runtime": "^6.18.0",
     "bulma": "^0.7.1",
     "promise-polyfill": "^6.0.2",
