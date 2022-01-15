@@ -81,7 +81,7 @@
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.1",
     "sass-loader": "^7.0.1",
-    "shelljs": "^0.8.2",
+    "shelljs": "^0.8.5",
     "style-loader": "^0.13.1",
     "vue-loader": "^11.0.0",
     "vue-template-compiler": "^2.2.0",
